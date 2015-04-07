@@ -1,0 +1,47 @@
+{% extends 'base_innner.html' %}
+
+{% block title %} - {{user.username|capfirst}}'s Groups {% endblock %}
+
+{% block page_title %} {{user.username|capfirst}}'s Groups {% endblock %}
+
+
+
+{% block body_block %}
+
+    <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+
+
+    <div class="list-group">
+
+
+    <a class="btn btn-lg btn-primary btn-block" style="font-size: 30px; border-bottom-left-radius:0px; border-bottom-right-radius: 0; " href="/groups/add"><span class="glyphicon glyphicon-plus"></span></a>
+
+        {% for group in groups  %}
+
+    <a href="/groups/{{ group.key }}" class="list-group-item">
+    <p class="pull-right" style="color: rgb(234, 67, 67)">Earliest Due: {% if group.found_date_time %}{{ group.earliest_due }} {% else %} Nothing Yet! {% endif %} </p>
+        <h4 class="list-group-item-heading">{{ group.name }}</h4>
+        <p class="list-group-item-text">{{ group.description }}</p>
+
+    </a>
+
+
+
+
+        {% endfor %}
+    {% if not groups %}
+        <a href="/groups/add" class="list-group-item">
+        <h4 class="list-group-item-heading">Nothing to see here. Add a group?</h4>
+    </a>
+    {% endif %}
+
+
+    </div>
+
+
+
+    </div>
+    </div>
+
+{% endblock %}

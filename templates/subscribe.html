@@ -1,0 +1,51 @@
+{%  extends 'base_innner.html' %}
+
+{% block title %} - Subscribe to a Group{% endblock %}
+
+{% block header_files %}
+
+        {% endblock %}
+
+
+{% block page_title %}
+Subscribe to a Group
+{% endblock %}
+
+{% block body_block %}
+<div class="row" style="margin-top:10px; margin-bottom: 10px;
+">
+
+
+
+
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form role="form" method="post">
+            {% csrf_token %}
+
+            {% if error %}
+            <div class="row">
+
+            <div class="col-md-12 col-sm-12" style="text-align: center">
+               <div class="alert alert-danger"><p>{{ error }}</p></div>
+            </div>
+                </div>
+            {% endif %}
+
+			<fieldset>
+				<div class="form-group">
+                    <input type="text" name="key" id="key" class="form-control input-lg" placeholder="Group Key">
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+                        <input type="submit" class="btn btn-lg btn-success btn-block" value="Join!">
+					</div>
+
+				</div>
+			</fieldset>
+		</form>
+
+
+	</div>
+
+    {% endblock %}

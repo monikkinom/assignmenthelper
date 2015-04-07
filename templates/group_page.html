@@ -1,0 +1,117 @@
+{% extends 'base_innner.html' %}
+
+{% block title %} - {{user.username|capfirst}}'s Groups {% endblock %}
+
+{% block page_title %} <div class="row"><div class="col-md-2 col-md-offset-4 col-xs-3 col-xs-offset-3"><a data-toggle="modal" data-target="#myModal" href="#"><div class="spanner"><span class="glyphicon glyphicon-share"></span></div></a></div> <div class="col-md-2 col-xs-3"> <a onclick="myFunction()"><div class="spanner" id="unsubscribe"><span class="glyphicon glyphicon-minus"></span></div></a> </div> </div>{% endblock %}
+
+{% block header_files %}
+
+    <script type="text/javascript">
+
+    function myFunction() {
+   var redirect = confirm("Are you sure you want to unsubscribe to this group?");
+   if (redirect == true) {
+       window.location.href = '/groups/unsubscribe/{{group.key}}';
+   }
+}
+
+
+    </script>
+
+{% endblock %}
+
+{% block body_block %}
+
+    <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+
+    <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12">
+            <div class="jumbotron" style="text-align: center">
+  <h1 style="margin-top: -24px"> {{ group.name }}</h1>
+                <hr width="75%">
+                  <p style="margin-bottom: -24px;">{{ group.description }}</p>
+</div>
+        </div>
+    </div>
+
+    <div class="list-group">
+    <a class="btn btn-lg btn-primary btn-block" style="font-size: 30px; border-bottom-left-radius:0px; border-bottom-right-radius: 0; " href="add"><span class="glyphicon glyphicon-plus"></span></a>
+    {% if not assignment_list %}
+        <a href="/add" class="list-group-item" style="text-align: center">
+        <h4 class="list-group-item-heading">Nothing to see here. Add something?</h4>
+    </a>
+    {% endif %}
+        {% for assignment in assignment_list %}
+    <a href="assignment/{{ assignment.pk }}" class="list-group-item">
+        <div class="row">
+
+            <div class="col-md-1 col-xs-3" style="text-align: center; border-right:1px solid; border-right-color: #EEEEEE;">
+
+                <div class="row" style="float: right">
+                <div class="col-md-10 col-xs-10">
+                <h4>{{ assignment.due_date|date:"M" }}</h4>
+                </div>
+                </div>
+
+                <div class="row" style="float: right">
+                    <div class="col-md-10 col-xs-10" style="font-size: 18px;">
+                {{ assignment.due_date|date:"d" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-6">
+
+                <h4 class="list-group-item-heading">{{ assignment.name }}</h4>
+                <p class="list-group-item-text"><span class="glyphicon glyphicon-eye-open"></span> {{ assignment.view_count }} Views</p>
+                <p class="list-group-item-text"><span class="glyphicon glyphicon-copy"></span> {{ assignment.image_count }} Page{% if assignment.image_count > 1  %}s{% endif %}</p>
+
+
+            </div>
+
+            <div class="col-md-5 col-xs-3">
+                <p class="list-group-item-text"> {{ assignment.read_time }} Mins <span class="glyphicon glyphicon-book"></span></p>
+                <p class="list-group-item-text hidden-xs">Uploaded by {{ assignment.owner.username }}</p>
+                <p class="list-group-item-text hidden-xs">on {{ assignment.upload_timestamp|date:"M, d" }}</p>
+            </div>
+
+        </div>
+
+    </a>
+        {% endfor %}
+
+    </div>
+
+
+
+    </div>
+
+
+
+    </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Share the group</h4>
+      </div>
+      <div class="modal-body" style="text-align: center">
+       <h1>Group Key : {{ group.key }}</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+

@@ -1,0 +1,3 @@
+django-storages
+boto
+pillow
