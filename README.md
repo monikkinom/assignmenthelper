@@ -1,7 +1,7 @@
 # assignmenthelper
 Collaborative tool for students to help them complete and organise assignments.
 
-Made this Django webapp in college for a hackathon. This aims to solve a major problem prevalent in colleges that still 
+Made this responsive Django webapp in college for a hackathon. This aims to solve a major problem prevalent in colleges that still 
 stress on rote learning. Share and learn from other students and quickly complete all your assignments! <br/>
 
 Features <br/>
