@@ -19,7 +19,7 @@ for any one else to learn!
 ** I'd highly recommend you to use Amazon S3 for hosting the images **
 
 ## Live Demo
-http://bit.do/assignmate
+http://bit.do/assignmate (!Doesn't work because we couldn't afford the AWS S3 costs anymore :( )
 
 ## Demo Pictures
 
